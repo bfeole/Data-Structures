@@ -39,8 +39,8 @@ class LRUCache:
             get_node = self.storage[key]
             # pass in that node to our dll function move_to_end
             self.order.move_to_end(get_node)
-            # return the node of that key
-            return get_node
+            # returns the value associated with that nodes key
+            return get_node.value[1]
 
     """
     Adds the given key-value pair to the cache. 
@@ -58,4 +58,28 @@ class LRUCache:
     """
 
     def set(self, key, value):
-        if len(self.order) >= len(self.storage):
+        # Check if key is already in storage dict
+        if key in self.storage:
+            node = self.storage[key]
+            node.value = (key, value)
+            self.order.move_to_end(node)
+            return
+        # check cache capacity
+        # remove from head and get key
+        if self.size == self.limit:
+            # node = self.order.head  # get oldest node in cache
+            # node_value = node.value  # tuple storing (k,v)
+            # key_for_dict = node_value[0]  # get key for dict
+
+            # value[0] is the first value in the tuple or the key saved in our dll
+            # deletes oldest item in cache from dict
+            del self.storage[self.order.head.value[0]]
+            self.order.remove_from_head()  # delete oldest item in cache form dll
+            self.size -= 1
+
+        # add key value pair to cache
+        # Add to dll and move to tail
+        self.order.add_to_tail((key, value))
+        # add to dictionary (is tail accesible from dll?)
+        self.storage[key] = self.order.tail
+        self.size += 1
