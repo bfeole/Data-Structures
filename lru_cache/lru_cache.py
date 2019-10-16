@@ -16,8 +16,8 @@ class LRUCache:
         # self.s = {}
         self.limit = limit
         self.order = DoublyLinkedList()
-        self.storage = {}
-        pass
+        self.storage = dict()
+        self.size = 0
 
     """
     Retrieves the value associated with the given key. 
