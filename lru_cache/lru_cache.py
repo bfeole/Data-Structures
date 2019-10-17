@@ -37,7 +37,7 @@ class LRUCache:
         if key in self.storage:
             # get the value /node? associated with that key
             get_node = self.storage[key]
-            # pass in that node to our dll function move_to_end
+            # pass in that node to our dll function move_to_end, this means we've recently accessed it
             self.order.move_to_end(get_node)
             # returns the value associated with that nodes key
             return get_node.value[1]
