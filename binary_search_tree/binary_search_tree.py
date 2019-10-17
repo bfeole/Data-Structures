@@ -1,5 +1,6 @@
 from dll_stack import Stack
-from dll_queue import Queue
+# from dll_queue import Queue
+from doubly_linked_list import DoublyLinkedList
 import sys
 sys.path.append('../queue_and_stack')
 
@@ -9,6 +10,7 @@ class BinarySearchTree:
         self.value = value
         self.left = None
         self.right = None
+        # self.stack = Stack()
 
     # Insert the given value into the tree
     def insert(self, value):
@@ -50,21 +52,21 @@ class BinarySearchTree:
     # Return the maximum value found in the tree
 
     def get_max(self):
-        # if not self.right:
-        #     return self.value
-        # return self.right.get_max()
+        if not self.right:
+            return self.value
+        return self.right.get_max()
 
-        max_value = self.value
-        current = self
+        # max_value = self.value
+        # current = self
 
-        while current:
-            # if current is greater than max, update
-            if current.value > max_value:
-                max_value = current.value
+        # while current:
+        #     # if current is greater than max, update
+        #     if current.value > max_value:
+        #         max_value = current.value
 
-            current = current.right
+        #     current = current.right
 
-        return max_value
+        # return max_value
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach
@@ -93,11 +95,34 @@ class BinarySearchTree:
 
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
-    def in_order_print(self, node):
-        pass
 
-    # Print the value of every node, starting with the given node,
-    # in an iterative breadth first traversal
+# create stack - use dll_stack
+# push start node to stack
+# while stack > 0:
+#     pop top item in stack
+#     do the thing!
+#     if left
+#         add left
+#     if right
+#          add right
+
+    def in_order_print(self, node):
+        if node == None:
+            return
+        # if self.left:
+        self.in_order_print(node.left)
+        # else:
+        print(node.value)
+        # if self.right:
+        self.in_order_print(node.right)
+        # pass
+
+        # while self.stack.len > 0:
+        #     self.stack.value[0].pop
+
+        # Print the value of every node, starting with the given node,
+        # in an iterative breadth first traversal
+
     def bft_print(self, node):
         pass
 
