@@ -1,5 +1,5 @@
 from dll_stack import Stack
-# from dll_queue import Queue
+from dll_queue import Queue
 from doubly_linked_list import DoublyLinkedList
 import sys
 sys.path.append('../queue_and_stack')
@@ -96,16 +96,6 @@ class BinarySearchTree:
     # Print all the values in order from low to high
     # Hint:  Use a recursive, depth first traversal
 
-# create stack - use dll_stack
-# push start node to stack
-# while stack > 0:
-#     pop top item in stack
-#     do the thing!
-#     if left
-#         add left
-#     if right
-#          add right
-
     def in_order_print(self, node):
         if node == None:
             return
@@ -124,17 +114,47 @@ class BinarySearchTree:
         # in an iterative breadth first traversal
 
     def bft_print(self, node):
-        pass
+        queue = Queue()
+        queue.enqueue(node)
+
+        while queue.len() > 0:
+            current = queue.dequeue()
+            print(current.value)
+            if current.left:
+                queue.enqueue(current.left)
+            if current.right:
+                queue.enqueue(current.right)
 
     # Print the value of every node, starting with the given node,
     # in an iterative depth first traversal
+
+    # create stack - use dll_stack
+    # push start node to stack
+    # while stack > 0:
+    #     pop top item in stack
+    #     do the thing!
+    #     if left
+    #         add left
+    #     if right
+    #          add right
+
     def dft_print(self, node):
-        pass
+        stack = Stack()
+        stack.push(node)
 
-    # STRETCH Goals -------------------------
-    # Note: Research may be required
+        while stack.len() > 0:
+            current = stack.pop()
+            print(current.value)
+            if current.left:
+                stack.push(current.left)
+            if current.right:
+                stack.push(current.right)
 
-    # Print In-order recursive DFT
+        # STRETCH Goals -------------------------
+        # Note: Research may be required
+
+        # Print In-order recursive DFT
+
     def pre_order_dft(self, node):
         pass
 
